@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: armarboe <armarboe@student.42.fr>          +#+  +:+       +#+         #
+#    By: chheniqu <chheniqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/14 23:10:48 by armarboe          #+#    #+#              #
-#    Updated: 2025/06/27 15:18:53 by armarboe         ###   ########.fr        #
+#    Updated: 2025/07/01 18:09:21 by chheniqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,6 +116,9 @@ COLOR_PURPLE = \033[95m
 RESET_COLOR = \033[0m
 
 all: ${LIBFT} ${NAME}
+
+valgrind: all
+	@valgrind --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all --suppressions=supp.supp ./$(NAME)
 
 ${NAME}: ${OBJS}
 	@echo "${COLOR_PURPLE}Compiling ${NAME}...${RESET_COLOR}"
